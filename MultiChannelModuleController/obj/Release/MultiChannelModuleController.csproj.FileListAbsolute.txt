@@ -1,0 +1,11 @@
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\bin\Release\MultiChannelModuleController.exe.config
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\bin\Release\MultiChannelModuleController.exe
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\bin\Release\MultiChannelModuleController.pdb
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Release\MultiChannelModuleController.MainForm.resources
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Release\MultiChannelModuleController.Properties.Resources.resources
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Release\MultiChannelModuleController.csproj.GenerateResource.cache
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Release\MultiChannelModuleController.csproj.CoreCompileInputs.cache
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Release\MultiChannelModuleController.exe
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Release\MultiChannelModuleController.pdb
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Release\MultiChannelModuleController.csprojResolveAssemblyReference.cache
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\bin\Release\digital_font.ttf

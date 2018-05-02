@@ -1,0 +1,10 @@
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Debug\MultiChannelModuleController.csprojResolveAssemblyReference.cache
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Debug\MultiChannelModuleController.csproj.GenerateResource.cache
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Debug\MultiChannelModuleController.csproj.CoreCompileInputs.cache
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Debug\MultiChannelModuleController.MainForm.resources
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Debug\MultiChannelModuleController.Properties.Resources.resources
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\bin\Debug\MultiChannelModuleController.exe.config
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\bin\Debug\MultiChannelModuleController.exe
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\bin\Debug\MultiChannelModuleController.pdb
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Debug\MultiChannelModuleController.exe
+C:\Users\SKTelecom\source\repos\MultiChannelModuleController\MultiChannelModuleController\obj\Debug\MultiChannelModuleController.pdb
