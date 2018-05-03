@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO.Ports;
 
 namespace MultiChannelModuleController
 {
@@ -16,15 +10,15 @@ namespace MultiChannelModuleController
         StcRequest = 0x03,
         AgcRequest = 0x04,
 
-        StatusReply = 0x81,//0x71, q
-        ModeReply = 0x82,
-        StcReply = 0x83,
-        AgcReply = 0x84
+        StatusResponse = 0x81, //test: 0x71
+        ModeResponse = 0x82,
+        StcResponse = 0x83,
+        AgcResponse = 0x84
     }
 
     public enum ModeType : byte
     {
-        Normal = 0x01,
+        Normal = 0x01, //test: 0x64
         High = 0x02
     }
 
@@ -37,8 +31,8 @@ namespace MultiChannelModuleController
 
     class FrameConstants
     {
-        public const byte StartCode = 0x7E;//0x61, a;
-        public const byte EndCode = 0x7F;//0x66, f;
+        public const byte StartCode = 0x7E; //test: 0x61
+        public const byte EndCode = 0x7F; //test: 0x66
         public static byte[] StatusReqData = { 0xAA, 0xBB, 0xCC };
 
         public static ushort[] CRCTable = {
@@ -76,11 +70,12 @@ namespace MultiChannelModuleController
             0x6E17, 0x7E36, 0x4E55, 0x5E74, 0x2E93, 0x3EB2, 0x0ED1, 0x1EF0
         };
 
-        public const int RequestFrameLength_6 = 6;
-        public const int RequestFrameLength_8 = 8;
-        public const int ReplyFrameLength = 6;
-        public const int ReplyMessageLength = 4;
-        public const byte ReplyDifference = 0x80;//0x70;
+        public const int MessageBufferLength = 7;    // with stuffing
+        public const int ResponseMessageLength = 4;  // without stuffing
+        public const byte CommandDifference = 0x80; //test: 0x70;
+        public const byte StuffKey = 0x7D;
+        public static byte[] StuffChars = { 0x7D, 0x7E, 0x7F };
+        public const byte XorKey = 0x20;
     }
 
     class Request : FrameConstants
@@ -90,17 +85,16 @@ namespace MultiChannelModuleController
         public byte[] FrameBuffer;
         public int FrameLength;
 
-        public byte ReplyCommand;
-        public byte ReplyData;
+        public byte ResponseCommand;
+        public byte ResponseData;
 
         public Request(CommandType command, byte data)
         {
             Message = new byte[] { (byte)command, data };
             Checksum = ComputeChecksum(Message);
-            FrameLength = RequestFrameLength_6;
-            FrameBuffer = GetFrame();
-            ReplyCommand = (byte)(command + ReplyDifference);
-            ReplyData = data;
+            ResponseCommand = (byte)(command + CommandDifference);
+            ResponseData = data;
+            CreateRequestFrame();
         }
 
         // Constructor for status request command
@@ -110,61 +104,62 @@ namespace MultiChannelModuleController
 
             Message = new byte[] { (byte)command, StatusReqData[0], StatusReqData[1], StatusReqData[2] };
             Checksum = ComputeChecksum(Message);
-            FrameLength = RequestFrameLength_8;
-            FrameBuffer = GetFrame();
-            ReplyCommand = (byte)CommandType.StatusReply;
+            ResponseCommand = (byte)CommandType.StatusResponse;
+            CreateRequestFrame();
         }
 
-        // TODO : charactor stuffing
-        public byte[] GetFrame()
+        public void CreateRequestFrame()
         {
-            byte[] buffer = new byte[FrameLength];
-            
-            buffer[0] = StartCode;
-            Message.CopyTo(buffer, 1);
-            BitConverter.GetBytes(Checksum).CopyTo(buffer, Message.Length + 1);
-            buffer[FrameLength -1] = EndCode;
+            // Perform character stuffing for message and CRC
+            byte[] original = new byte[Message.Length + 2];            
+            Message.CopyTo(original, 0);
+            BitConverter.GetBytes(Checksum).CopyTo(original, Message.Length);
+            byte[] stuffed = Stuff(original);
 
-            return buffer;
+            FrameLength = stuffed.Length + 2;
+            FrameBuffer = new byte[FrameLength];
+
+            FrameBuffer[0] = StartCode;
+            stuffed.CopyTo(FrameBuffer, 1);
+            FrameBuffer[FrameLength -1] = EndCode;
         }
 
-        public bool GetReply(byte[] replyBuffer, out RequestResult result)
+        public bool GetResult(byte[] responseBuffer, out RequestResult result)
         {
+            byte[] responseMessage = Strip(responseBuffer);
             result = new RequestResult();
 
-            int realLength = replyBuffer.Length - 1;
-            while (realLength >= 0 && replyBuffer[realLength] == 0) --realLength;
-            if (realLength + 1 < ReplyMessageLength)
+            if (responseMessage.Length < ResponseMessageLength)
             {
-                result.ErrorMessage = "데이터가 손상됐습니다(message length too small)";
+                result.ErrorMessage = "오류: 응답 메시지의 데이터가 손상됐습니다(invalid message length)";
                 return false;
             }
 
-            byte receivedCommand = replyBuffer[0];
-            byte receivedData = replyBuffer[1];
-            ushort crc = BitConverter.ToUInt16(replyBuffer, 2);
+            byte command = responseMessage[0];
+            byte data = responseMessage[1];
+            ushort crc = BitConverter.ToUInt16(responseMessage, 2);
 
-            if (ComputeChecksum(replyBuffer) != crc)
+            if (ComputeChecksum(new byte[] { command, data }) != crc)
             {
-                result.ErrorMessage = "데이터가 손상됐습니다(checksum error)";
+                result.ErrorMessage = "오류: 응답 메시지의 데이터가 손상됐습니다(checksum error)";
                 return false;
             }
-            if (receivedCommand != ReplyCommand)
+            if (command != ResponseCommand)
             {
-                result.ErrorMessage = "응답을 받지 못했습니다(command does not match)";
+                result.ErrorMessage = "오류: 요청과 응답이 상이합니다(command not match)";
                 return false;
             }
-            if (receivedCommand != (byte)CommandType.StatusReply &&
-                ReplyData != receivedData)
+            if (command != (byte)CommandType.StatusResponse &&
+                ResponseData != data)
             {
-                result.ErrorMessage = "요청한 값과 응답 값이 상이합니다(value does not match)";
+                result.ErrorMessage = "요류: 요청 값과 응답 값이 상이합니다(value not match)";
                 return false;
             }
 
-            if (receivedCommand == (byte)CommandType.StatusReply)
+            if (command == (byte)CommandType.StatusResponse)
             {
-                result.Lo1Status = (receivedData & 1) != 0;
-                result.Lo2Status = (receivedData & (1 << 1)) != 0;
+                result.Lo1Status = (data & 1) != 0;
+                result.Lo2Status = (data & (1 << 1)) != 0;
             }
             return true;
         }
@@ -178,6 +173,53 @@ namespace MultiChannelModuleController
                 crc = (ushort)((crc >> 8) ^ CRCTable[(crc ^ buffer[i]) & 0xff]);
             }
             return crc;
+        }
+
+        public static byte[] Stuff(byte[] data)
+        {
+            int length = data.Length + data.Count(d => StuffChars.Contains(d));
+            byte[] stuffed = new byte[length];
+
+            int index = 0;
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (StuffChars.Contains(data[i]))
+                {
+                    stuffed[index++] = StuffKey;
+                    stuffed[index++] = (byte)(data[i] ^ XorKey);
+                }
+                else
+                {
+                    stuffed[index++] = data[i];
+                }
+            }
+            return stuffed;
+        }
+
+        public static byte[] Strip(byte[] data)
+        {
+            int length = data.Length - data.Count(d => d == StuffKey);
+            byte[] original = new byte[length];
+
+            int index = 0;
+            bool encrypted = false;
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (encrypted)
+                {
+                    original[index++] = (byte)(data[i] ^ XorKey);
+                    encrypted = false;
+                }
+                else if (data[i] == StuffKey)
+                {
+                    encrypted = true;
+                }
+                else
+                {
+                    original[index++] = data[i];
+                }
+            }
+            return original;
         }
     }
 }

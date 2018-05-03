@@ -4,6 +4,7 @@ using System.Drawing.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO.Ports;
+using System.Windows;
 
 namespace MultiChannelModuleController
 {
@@ -32,7 +33,7 @@ namespace MultiChannelModuleController
             {
                 if (value)
                 {
-                    ResumePollStatus();
+                    ResumeStatusPolling();
 
                     pbSerialPort.Image = Properties.Resources.green;
                     cbSerialPort.Enabled = false;
@@ -45,13 +46,13 @@ namespace MultiChannelModuleController
                 }
                 else
                 {
-                    PausePollStatus();
+                    PauseStatusPolling();
 
                     pbSerialPort.Image = Properties.Resources.red;
                     pbLo1.Image = Properties.Resources.black;
                     pbLo2.Image = Properties.Resources.black;
                     cbSerialPort.Enabled = true;
-                    btnConnect.Text = "CONNECT";
+                    btnConnect.Text = "OPEN";
                     btnModeSend.Enabled = false;
                     btnStcSendSelected.Enabled = false;
                     btnStcSendManual.Enabled = false;
@@ -66,17 +67,18 @@ namespace MultiChannelModuleController
         }
 
         private static string Caption = "다채널 수신 모듈";
-        private static ManualResetEvent ReplyReceivedEvent = new ManualResetEvent(false);
-        private static int ReplyTimeout = 3000; // 1 seconds
-        private byte[] ReplyFrameBuffer = new byte[FrameConstants.ReplyMessageLength];
-        private int ReplyReceived = 0;
-        private bool ReplyFrameStarted = false;
-        private bool ReplyFrameEnded = false;
+        private static ManualResetEvent ResponseReceivedEvent = new ManualResetEvent(false);
+        private static int ResponseTimeout = 1000; // 1 seconds
+        private byte[] ResponseFrameBuffer = new byte[FrameConstants.MessageBufferLength];
+        private int ResponseReceived = 0;
+        private bool ResponseFrameStarted = false;
+        private bool ResponseFrameEnded = false;
 
         private static object RequestLock = new object(); 
         private static Thread StatusPollingThread;
         private static ManualResetEvent ConnectedEvent = new ManualResetEvent(false);  
         private static int StatusPollingDelay = 10000; // 10 seconds
+        private delegate void UpdateStatus(bool isActive);
 
 
         public MainForm()
@@ -199,7 +201,8 @@ namespace MultiChannelModuleController
                 }
                 catch (Exception ex)
                 {                   
-                    MessageBox.Show("연결에 실패했습니다\n" + ex.Message,
+                    MessageBox.Show("연결에 실패했습니다, 다시 시도해 주세요.\n" +
+                        ex.Message,
                         Caption,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -231,15 +234,9 @@ namespace MultiChannelModuleController
             RequestResult reqResult;
             bool result = SendRequest(request, out reqResult);
 
-            if (result)
+            if (!result)
             {
-                MessageBox.Show("모드가 설정되었습니다.", Caption,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("모드를 설정하지 못했습니다.\n" +
+                MessageBox.Show("모드를 설정하지 못했습니다, 다시 시도해 주세요.\n" +
                     reqResult.ErrorMessage,
                     Caption,
                     MessageBoxButtons.OK,
@@ -271,15 +268,9 @@ namespace MultiChannelModuleController
             RequestResult reqResult;
             bool result = SendRequest(request, out reqResult);
 
-            if (result)
+            if (!result)
             {
-                MessageBox.Show("STC 값이 설정되었습니다.", Caption,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("STC 값을 설정하지 못했습니다.\n" +
+                MessageBox.Show("STC 값을 설정하지 못했습니다, 다시 시도해 주세요.\n" +
                     reqResult.ErrorMessage,
                     Caption,
                     MessageBoxButtons.OK,
@@ -290,9 +281,12 @@ namespace MultiChannelModuleController
         private void btnSendManual_Click(object sender, EventArgs e)
         {
             double doubleValue = Convert.ToDouble(tbStcManual.Text);
-            if (!ValidateControlValue(doubleValue))
+            string valueError;
+            if (!ValidateControlValue(doubleValue, out valueError))
             {
-                MessageBox.Show("유효하지 않은 값입니다.", Caption,
+                MessageBox.Show("유효하지 않은 값입니다, 다시 시도해 주세요.\n" +
+                    valueError,
+                    Caption,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
@@ -313,15 +307,9 @@ namespace MultiChannelModuleController
             RequestResult reqResult;
             bool result = SendRequest(request, out reqResult);
 
-            if (result)
+            if (!result)
             {
-                MessageBox.Show("STC 값이 설정되었습니다.", Caption,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("STC 값을 설정하지 못했습니다.\n" +
+                MessageBox.Show("STC 값을 설정하지 못했습니다, 다시 시도해 주세요.\n" +
                     reqResult.ErrorMessage,
                     Caption,
                     MessageBoxButtons.OK,
@@ -353,15 +341,9 @@ namespace MultiChannelModuleController
             RequestResult reqResult;
             bool result = SendRequest(request, out reqResult);
 
-            if (result)
+            if (!result)
             {
-                MessageBox.Show("AGC 값이 설정되었습니다.", Caption,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("AGC 값을 설정하지 못했습니다.\n" +
+                MessageBox.Show("AGC 값을 설정하지 못했습니다, 다시 시도해 주세요.\n" +
                     reqResult.ErrorMessage,
                     Caption,
                     MessageBoxButtons.OK,
@@ -372,9 +354,12 @@ namespace MultiChannelModuleController
         private void btnAgcSendManual_Click(object sender, EventArgs e)
         {
             double doubleValue = Convert.ToDouble(tbStcManual.Text);
-            if (!ValidateControlValue(doubleValue))
+            string valueError;
+            if (!ValidateControlValue(doubleValue, out valueError))
             {
-                MessageBox.Show("유효하지 않은 값입니다.", Caption,
+                MessageBox.Show("유효하지 않은 값입니다, 다시 시도해 주세요.\n" +
+                    valueError,
+                    Caption,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
@@ -395,15 +380,9 @@ namespace MultiChannelModuleController
             RequestResult reqResult;
             bool result = SendRequest(request, out reqResult);
 
-            if (result)
+            if (!result)
             {
-                MessageBox.Show("AGC 값이 설정되었습니다.", Caption,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("AGC 값을 설정하지 못했습니다.\n" +
+                MessageBox.Show("AGC 값을 설정하지 못했습니다, 다시 시도해 주세요.\n" +
                     reqResult.ErrorMessage,
                     Caption,
                     MessageBoxButtons.OK,
@@ -411,9 +390,20 @@ namespace MultiChannelModuleController
             }
         }
 
-        private bool ValidateControlValue(double value)
+        private bool ValidateControlValue(double value, out string error)
         {
-            // TODO: validate STC and AGC user input value
+            if (value < 0.0 || value > 63.5)
+            {
+                error = "오류: 0.0 ~ 63.5 사이의 값을 넣어 주세요.";
+                return false;
+            }
+            if ((int)(value * 10) % 5 != 0)
+            {
+                error = "오류: 0.5의 배수만 입력 가능합니다.";
+                return false;
+            }
+
+            error = "";
             return true;
         }
 
@@ -435,14 +425,8 @@ namespace MultiChannelModuleController
             RequestResult reqResult;
             bool result = SendRequest(request, out reqResult);
 
-            if (!result)
-            {
-                return null;
-            }
-            return reqResult;
+            return result ? reqResult : null;
         }
-
-        private delegate void UpdateStatus(bool isActive);
 
         private void PollStatus()
         {
@@ -456,18 +440,16 @@ namespace MultiChannelModuleController
                     pbLo2.Invoke(new UpdateStatus(UpdateLo2Status),
                         new object[] { result.Lo2Status });
                 }
-                // TODO: 응답을 제대로 받지 못 한 경우 RED로 업데이트?
-
                 Thread.Sleep(StatusPollingDelay);
             }
         }
 
-        private void PausePollStatus()
+        private void PauseStatusPolling()
         {
             ConnectedEvent.Reset();
         }
 
-        private void ResumePollStatus()
+        private void ResumeStatusPolling()
         {
             ConnectedEvent.Set();
         }
@@ -477,13 +459,13 @@ namespace MultiChannelModuleController
             lock (RequestLock)
             {
                 bool result = false;
-                ReplyReceivedEvent.Reset();
+                ResponseReceivedEvent.Reset();
 
                 // Restore variables to default to handle the new request
-                ReplyFrameBuffer = new byte[FrameConstants.ReplyMessageLength];
-                ReplyReceived = 0;
-                ReplyFrameStarted = false;
-                ReplyFrameEnded = false;
+                ResponseFrameBuffer = new byte[FrameConstants.MessageBufferLength];
+                ResponseReceived = 0;
+                ResponseFrameStarted = false;
+                ResponseFrameEnded = false;
 
                 SerialPort.DiscardOutBuffer();
                 SerialPort.DiscardInBuffer();
@@ -491,20 +473,23 @@ namespace MultiChannelModuleController
 
                 SerialPort.Write(request.FrameBuffer, 0, request.FrameLength);
 
-                // Block main form until it gets reply
-                ReplyReceivedEvent.WaitOne(ReplyTimeout);
+                // Block main form until it gets response
+                ResponseReceivedEvent.WaitOne(ResponseTimeout);
                 SerialPort.DataReceived -= Port_DataReceived;
 
-                // Handle reply if valid reply received or
+                // Handle response if valid resonse received or
                 // just return false when timed out
-                if (ReplyFrameEnded)
+                if (ResponseFrameEnded)
                 {
-                    result = request.GetReply(ReplyFrameBuffer, out reqResult);
+                    // Trim trailing NULLs
+                    byte[] responseFrame = new byte[ResponseReceived];
+                    Array.Copy(ResponseFrameBuffer, responseFrame, ResponseReceived);
+                    result = request.GetResult(responseFrame, out reqResult);
                 }
                 else
                 {
                     reqResult = new RequestResult();
-                    reqResult.ErrorMessage = "응답을 받지 못했습니다(reply was not received)";
+                    reqResult.ErrorMessage = "오류: 응답을 받지 못했습니다";
                 }
                 return result;
             }
@@ -512,23 +497,23 @@ namespace MultiChannelModuleController
 
         private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            while (SerialPort.BytesToRead > 0 && !ReplyFrameEnded)
+            while (SerialPort.BytesToRead > 0 && !ResponseFrameEnded)
             {
                 byte read = (byte)SerialPort.ReadByte();
                 if (read == FrameConstants.StartCode)
                 {
-                    ReplyFrameStarted = true;
+                    ResponseFrameStarted = true;
                 }
                 else if (read == FrameConstants.EndCode)
                 {
-                    // Release main form when receiving reply complete
-                    ReplyFrameEnded = true;
-                    ReplyReceivedEvent.Set();
+                    // Release main form when receiving response complete
+                    ResponseFrameEnded = true;
+                    ResponseReceivedEvent.Set();
                 }
-                else if (ReplyFrameStarted &&
-                    ReplyReceived < FrameConstants.ReplyMessageLength)
+                else if (ResponseFrameStarted &&
+                    ResponseReceived < FrameConstants.MessageBufferLength)
                 {
-                    ReplyFrameBuffer[ReplyReceived++] = read;
+                    ResponseFrameBuffer[ResponseReceived++] = read;
                 }
             }
         }
