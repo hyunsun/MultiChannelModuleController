@@ -230,7 +230,6 @@
             this.pbLo2.Size = new System.Drawing.Size(16, 16);
             this.pbLo2.TabIndex = 10;
             this.pbLo2.TabStop = false;
-            this.pbLo2.Click += new System.EventHandler(this.pbLo2_Click);
             // 
             // pbLo1
             // 
@@ -240,7 +239,6 @@
             this.pbLo1.Size = new System.Drawing.Size(16, 16);
             this.pbLo1.TabIndex = 9;
             this.pbLo1.TabStop = false;
-            this.pbLo1.Click += new System.EventHandler(this.pbLo1_Click);
             // 
             // label6
             // 
@@ -251,7 +249,6 @@
             this.label6.Size = new System.Drawing.Size(82, 26);
             this.label6.TabIndex = 8;
             this.label6.Text = "LO2_BIT";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
@@ -262,7 +259,6 @@
             this.label5.Size = new System.Drawing.Size(82, 26);
             this.label5.TabIndex = 7;
             this.label5.Text = "LO1_BIT";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // groupBox4
             // 
