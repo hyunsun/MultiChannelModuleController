@@ -10,15 +10,15 @@ namespace MultiChannelModuleController
         StcRequest = 0x03,
         AgcRequest = 0x04,
 
-        StatusResponse = 0x71,//0x81, //test: 0x71
+        StatusResponse = 0x81, //test: 0x71
         ModeResponse = 0x82,
-        StcResponse = 0x73,//0x83,
-        AgcResponse = 0x74//0x84
+        StcResponse = 0x83,
+        AgcResponse = 0x84
     }
 
     public enum ModeType : byte
     {
-        Normal = 0x64,//0x01, //test: 0x64
+        Normal = 0x01, //test: 0x64
         High = 0x02
     }
 
@@ -33,8 +33,8 @@ namespace MultiChannelModuleController
 
     class FrameConstants
     {
-        public const byte StartCode = 0x61;//0x7E; //test: 0x61
-        public const byte EndCode = 0x66;//0x7F; //test: 0x66
+        public const byte StartCode = 0x7E; //test: 0x61
+        public const byte EndCode = 0x7F; //test: 0x66
         public static byte[] StatusReqData = { 0xAA, 0xBB, 0xCC };
 
         public static ushort[] CRCTable = {
@@ -74,7 +74,7 @@ namespace MultiChannelModuleController
 
         public const int MessageBufferLength = 7;    // with stuffing
         public const int ResponseMessageLength = 4;  // without stuffing
-        public const byte CommandDifference = 0x70;//0x80; //test: 0x70;
+        public const byte CommandDifference = 0x80; //test: 0x70;
         public const byte StuffKey = 0x7D;
         public static byte[] StuffChars = { 0x7D, 0x7E, 0x7F };
         public const byte XorKey = 0x20;

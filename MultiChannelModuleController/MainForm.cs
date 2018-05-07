@@ -63,7 +63,7 @@ namespace MultiChannelModuleController
 
         private static string Caption = "다채널 수신 모듈";
         private static ManualResetEvent ResponseReceivedEvent = new ManualResetEvent(false);
-        private static int ResponseTimeout = 3000; // 1 seconds
+        private static int ResponseTimeout = 1000; // 1 seconds
         private byte[] ResponseFrameBuffer = new byte[FrameConstants.MessageBufferLength];
         private int ResponseReceived = 0;
         private bool ResponseFrameStarted = false;
@@ -72,7 +72,7 @@ namespace MultiChannelModuleController
         private static object RequestLock = new object(); 
         private static Thread StatusPollingThread;
         private static ManualResetEvent ConnectedEvent = new ManualResetEvent(false);  
-        private static int StatusPollingDelay = 10000; // 1 seconds
+        private static int StatusPollingDelay = 1000; // 1 seconds
         private delegate void UpdateStatus(bool isActive);
 
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
