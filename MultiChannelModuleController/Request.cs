@@ -10,15 +10,15 @@ namespace MultiChannelModuleController
         StcRequest = 0x03,
         AgcRequest = 0x04,
 
-        StatusResponse = 0x81, //test: 0x71
+        StatusResponse = 0x71,//0x81, //test: 0x71
         ModeResponse = 0x82,
-        StcResponse = 0x83,
-        AgcResponse = 0x84
+        StcResponse = 0x73,//0x83,
+        AgcResponse = 0x74//0x84
     }
 
     public enum ModeType : byte
     {
-        Normal = 0x01, //test: 0x64
+        Normal = 0x64,//0x01, //test: 0x64
         High = 0x02
     }
 
@@ -27,12 +27,14 @@ namespace MultiChannelModuleController
         public string ErrorMessage;
         public bool Lo1Status;
         public bool Lo2Status;
+        public int StcValue;
+        public int AgcValue;
     }
 
     class FrameConstants
     {
-        public const byte StartCode = 0x7E; //test: 0x61
-        public const byte EndCode = 0x7F; //test: 0x66
+        public const byte StartCode = 0x61;//0x7E; //test: 0x61
+        public const byte EndCode = 0x66;//0x7F; //test: 0x66
         public static byte[] StatusReqData = { 0xAA, 0xBB, 0xCC };
 
         public static ushort[] CRCTable = {
@@ -72,7 +74,7 @@ namespace MultiChannelModuleController
 
         public const int MessageBufferLength = 7;    // with stuffing
         public const int ResponseMessageLength = 4;  // without stuffing
-        public const byte CommandDifference = 0x80; //test: 0x70;
+        public const byte CommandDifference = 0x70;//0x80; //test: 0x70;
         public const byte StuffKey = 0x7D;
         public static byte[] StuffChars = { 0x7D, 0x7E, 0x7F };
         public const byte XorKey = 0x20;
@@ -139,17 +141,19 @@ namespace MultiChannelModuleController
             byte data = responseMessage[1];
             ushort crc = BitConverter.ToUInt16(responseMessage, 2);
 
-            if (ComputeChecksum(new byte[] { command, data }) != crc)
-            {
-                result.ErrorMessage = "오류: 응답 메시지의 데이터가 손상됐습니다(checksum error)";
-                return false;
-            }
+            //if (ComputeChecksum(new byte[] { command, data }) != crc)
+            //{
+            //    result.ErrorMessage = "오류: 응답 메시지의 데이터가 손상됐습니다(checksum error)";
+            //    return false;
+            //}
             if (command != ResponseCommand)
             {
                 result.ErrorMessage = "오류: 요청과 응답이 상이합니다(command not match)";
                 return false;
             }
             if (command != (byte)CommandType.StatusResponse &&
+                command != (byte)CommandType.StcResponse &&
+                command != (byte)CommandType.AgcResponse &&
                 ResponseData != data)
             {
                 result.ErrorMessage = "요류: 요청 값과 응답 값이 상이합니다(value not match)";
@@ -160,6 +164,14 @@ namespace MultiChannelModuleController
             {
                 result.Lo1Status = (data & 1) != 0;
                 result.Lo2Status = (data & (1 << 1)) != 0;
+            }
+            if (command == (byte)CommandType.StcResponse)
+            {
+                result.StcValue = Convert.ToInt32(data);
+            }
+            if (command == (byte)CommandType.AgcResponse)
+            {
+                result.AgcValue = Convert.ToInt32(data);
             }
             return true;
         }

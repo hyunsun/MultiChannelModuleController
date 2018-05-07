@@ -39,9 +39,7 @@ namespace MultiChannelModuleController
                     btnConnect.Text = "CLOSE";
                     btnModeSend.Enabled = true;
                     btnStcSendSelected.Enabled = true;
-                    btnStcSendManual.Enabled = true;
                     btnAgcSendSelected.Enabled = true;
-                    btnAgcSendManual.Enabled = true;
                 }
                 else
                 {
@@ -54,9 +52,7 @@ namespace MultiChannelModuleController
                     btnConnect.Text = "OPEN";
                     btnModeSend.Enabled = false;
                     btnStcSendSelected.Enabled = false;
-                    btnStcSendManual.Enabled = false;
                     btnAgcSendSelected.Enabled = false;
-                    btnAgcSendManual.Enabled = false;
                 }
             }
             get
@@ -67,7 +63,7 @@ namespace MultiChannelModuleController
 
         private static string Caption = "다채널 수신 모듈";
         private static ManualResetEvent ResponseReceivedEvent = new ManualResetEvent(false);
-        private static int ResponseTimeout = 1000; // 1 seconds
+        private static int ResponseTimeout = 3000; // 1 seconds
         private byte[] ResponseFrameBuffer = new byte[FrameConstants.MessageBufferLength];
         private int ResponseReceived = 0;
         private bool ResponseFrameStarted = false;
@@ -76,7 +72,7 @@ namespace MultiChannelModuleController
         private static object RequestLock = new object(); 
         private static Thread StatusPollingThread;
         private static ManualResetEvent ConnectedEvent = new ManualResetEvent(false);  
-        private static int StatusPollingDelay = 1000; // 1 seconds
+        private static int StatusPollingDelay = 10000; // 1 seconds
         private delegate void UpdateStatus(bool isActive);
 
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
@@ -144,9 +140,8 @@ namespace MultiChannelModuleController
             Font digitalFont;
 
             digitalFont = new Font(DigitalFont.Families[0], 60f);
-            tbStcSelected.Font = digitalFont;
-            tbStcManual.Font = digitalFont;
-            tbStcManual.Text = "0.00";
+            tbStcRequest.Font = digitalFont;
+            tbStcResponse.Font = digitalFont;
 
             digitalFont = new Font(DigitalFont.Families[0], 28f);
             dbm1.Font = digitalFont;
@@ -168,9 +163,8 @@ namespace MultiChannelModuleController
             Font digitalFont;
 
             digitalFont = new Font(DigitalFont.Families[0], 60f);
-            tbAgcSelected.Font = digitalFont;
-            tbAgcManual.Font = digitalFont;
-            tbAgcManual.Text = "0.00";
+            tbAgcRequest.Font = digitalFont;
+            tbAgcResponse.Font = digitalFont;
 
             digitalFont = new Font(DigitalFont.Families[0], 28f);
             dbm3.Font = digitalFont;
@@ -259,14 +253,14 @@ namespace MultiChannelModuleController
         // Event handlers for STC group
         private void lbStc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbStcSelected.Text = String.Format("{0:F}", 0.5 * lbStc.SelectedIndex);
+            tbStcRequest.Text = String.Format("{0:F}", 0.5 * lbStc.SelectedIndex);
         }
 
-        private void tbStcManual_KeyPress(object sender, KeyPressEventArgs e)
+        private void tbStcRequest_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsDigit(e.KeyChar) ||
-                e.KeyChar == '.' ||
-                e.KeyChar == Convert.ToChar(Keys.Back)))
+                   e.KeyChar == '.' ||
+                   e.KeyChar == Convert.ToChar(Keys.Back)))
             {
                 e.Handled = true;
             }
@@ -274,25 +268,7 @@ namespace MultiChannelModuleController
 
         private void btnStcSendSelected_Click(object sender, EventArgs e)
         {
-            byte data = Convert.ToByte(lbStc.SelectedIndex + 1);
-
-            Request request = new Request(CommandType.StcRequest, data);
-            RequestResult reqResult;
-            bool result = SendRequest(request, out reqResult);
-
-            if (!result)
-            {
-                MessageBox.Show("STC 값을 설정하지 못했습니다, 다시 시도해 주세요.\n" +
-                    reqResult.ErrorMessage,
-                    Caption,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnSendManual_Click(object sender, EventArgs e)
-        {
-            double doubleValue = Convert.ToDouble(tbStcManual.Text);
+            double doubleValue = Convert.ToDouble(tbStcRequest.Text);
             string valueError;
             if (!ValidateControlValue(doubleValue, out valueError))
             {
@@ -327,19 +303,23 @@ namespace MultiChannelModuleController
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+            else
+            {
+                tbStcResponse.Text = String.Format("{0:F}", (reqResult.StcValue - 1) * 0.5);
+            }
         }
 
         // Event handlers for AGC group
         private void lbAgc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbAgcSelected.Text = String.Format("{0:F}", 0.5 * lbAgc.SelectedIndex);
+            tbAgcRequest.Text = String.Format("{0:F}", 0.5 * lbAgc.SelectedIndex);
         }
 
-        private void tbAgcManual_KeyPress(object sender, KeyPressEventArgs e)
+        private void tbAgcRequest_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsDigit(e.KeyChar) ||
-                e.KeyChar == '.' ||
-                e.KeyChar == Convert.ToChar(Keys.Back)))
+                   e.KeyChar == '.' ||
+                   e.KeyChar == Convert.ToChar(Keys.Back)))
             {
                 e.Handled = true;
             }
@@ -347,25 +327,7 @@ namespace MultiChannelModuleController
 
         private void btnAgcSendSelected_Click(object sender, EventArgs e)
         {
-            byte data = Convert.ToByte(lbAgc.SelectedIndex + 1);
-
-            Request request = new Request(CommandType.AgcRequest, data);
-            RequestResult reqResult;
-            bool result = SendRequest(request, out reqResult);
-
-            if (!result)
-            {
-                MessageBox.Show("AGC 값을 설정하지 못했습니다, 다시 시도해 주세요.\n" +
-                    reqResult.ErrorMessage,
-                    Caption,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnAgcSendManual_Click(object sender, EventArgs e)
-        {
-            double doubleValue = Convert.ToDouble(tbAgcManual.Text);
+            double doubleValue = Convert.ToDouble(tbAgcRequest.Text);
             string valueError;
             if (!ValidateControlValue(doubleValue, out valueError))
             {
@@ -399,6 +361,10 @@ namespace MultiChannelModuleController
                     Caption,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+            }
+            else
+            {
+                tbAgcResponse.Text = String.Format("{0:F}", (reqResult.AgcValue - 1) * 0.5); ;
             }
         }
 

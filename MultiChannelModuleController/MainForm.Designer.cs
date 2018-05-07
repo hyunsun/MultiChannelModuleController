@@ -30,46 +30,44 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pbSerialPort = new System.Windows.Forms.PictureBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
             this.cbSerialPort = new System.Windows.Forms.ComboBox();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnModeSend = new System.Windows.Forms.Button();
             this.rbHighResolution = new System.Windows.Forms.RadioButton();
             this.rbNormal = new System.Windows.Forms.RadioButton();
+            this.pbLo2 = new System.Windows.Forms.PictureBox();
+            this.pbLo1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnStcSendManual = new System.Windows.Forms.Button();
             this.dbm2 = new System.Windows.Forms.Label();
             this.btnStcSendSelected = new System.Windows.Forms.Button();
-            this.tbStcManual = new System.Windows.Forms.TextBox();
+            this.tbStcResponse = new System.Windows.Forms.TextBox();
             this.lbStc = new System.Windows.Forms.ListBox();
             this.dbm1 = new System.Windows.Forms.Label();
-            this.tbStcSelected = new System.Windows.Forms.TextBox();
+            this.tbStcRequest = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnAgcSendManual = new System.Windows.Forms.Button();
             this.btnAgcSendSelected = new System.Windows.Forms.Button();
             this.dbm4 = new System.Windows.Forms.Label();
-            this.tbAgcSelected = new System.Windows.Forms.TextBox();
+            this.tbAgcRequest = new System.Windows.Forms.TextBox();
             this.dbm3 = new System.Windows.Forms.Label();
-            this.tbAgcManual = new System.Windows.Forms.TextBox();
+            this.tbAgcResponse = new System.Windows.Forms.TextBox();
             this.lbAgc = new System.Windows.Forms.ListBox();
-            this.pbLo2 = new System.Windows.Forms.PictureBox();
-            this.pbLo1 = new System.Windows.Forms.PictureBox();
-            this.pbSerialPort = new System.Windows.Forms.PictureBox();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLo2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLo1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSerialPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLo2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLo1)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -97,6 +95,17 @@
             this.label1.Size = new System.Drawing.Size(69, 20);
             this.label1.TabIndex = 15;
             this.label1.Text = "통신상태";
+            // 
+            // pbSerialPort
+            // 
+            this.pbSerialPort.Image = global::MultiChannelModuleController.Properties.Resources.black;
+            this.pbSerialPort.InitialImage = null;
+            this.pbSerialPort.Location = new System.Drawing.Point(745, 30);
+            this.pbSerialPort.Name = "pbSerialPort";
+            this.pbSerialPort.Size = new System.Drawing.Size(32, 32);
+            this.pbSerialPort.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSerialPort.TabIndex = 4;
+            this.pbSerialPort.TabStop = false;
             // 
             // btnExit
             // 
@@ -129,6 +138,16 @@
             this.cbSerialPort.Size = new System.Drawing.Size(242, 44);
             this.cbSerialPort.TabIndex = 1;
             this.cbSerialPort.SelectedIndexChanged += new System.EventHandler(this.cbSerialPort_SelectedIndexChanged);
+            // 
+            // pbLogo
+            // 
+            this.pbLogo.Image = global::MultiChannelModuleController.Properties.Resources.sample_logo;
+            this.pbLogo.Location = new System.Drawing.Point(20, 32);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(253, 47);
+            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLogo.TabIndex = 0;
+            this.pbLogo.TabStop = false;
             // 
             // groupBox2
             // 
@@ -203,6 +222,26 @@
             this.rbNormal.Text = "NORMAL";
             this.rbNormal.UseVisualStyleBackColor = true;
             // 
+            // pbLo2
+            // 
+            this.pbLo2.Image = global::MultiChannelModuleController.Properties.Resources.black_small;
+            this.pbLo2.Location = new System.Drawing.Point(301, 73);
+            this.pbLo2.Name = "pbLo2";
+            this.pbLo2.Size = new System.Drawing.Size(16, 16);
+            this.pbLo2.TabIndex = 10;
+            this.pbLo2.TabStop = false;
+            this.pbLo2.Click += new System.EventHandler(this.pbLo2_Click);
+            // 
+            // pbLo1
+            // 
+            this.pbLo1.Image = global::MultiChannelModuleController.Properties.Resources.black_small;
+            this.pbLo1.Location = new System.Drawing.Point(153, 73);
+            this.pbLo1.Name = "pbLo1";
+            this.pbLo1.Size = new System.Drawing.Size(16, 16);
+            this.pbLo1.TabIndex = 9;
+            this.pbLo1.TabStop = false;
+            this.pbLo1.Click += new System.EventHandler(this.pbLo1_Click);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -227,13 +266,12 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.btnStcSendManual);
             this.groupBox4.Controls.Add(this.dbm2);
             this.groupBox4.Controls.Add(this.btnStcSendSelected);
-            this.groupBox4.Controls.Add(this.tbStcManual);
+            this.groupBox4.Controls.Add(this.tbStcResponse);
             this.groupBox4.Controls.Add(this.lbStc);
             this.groupBox4.Controls.Add(this.dbm1);
-            this.groupBox4.Controls.Add(this.tbStcSelected);
+            this.groupBox4.Controls.Add(this.tbStcRequest);
             this.groupBox4.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox4.Location = new System.Drawing.Point(20, 284);
             this.groupBox4.Name = "groupBox4";
@@ -242,22 +280,11 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "STC 설정";
             // 
-            // btnStcSendManual
-            // 
-            this.btnStcSendManual.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStcSendManual.Location = new System.Drawing.Point(345, 393);
-            this.btnStcSendManual.Name = "btnStcSendManual";
-            this.btnStcSendManual.Size = new System.Drawing.Size(109, 112);
-            this.btnStcSendManual.TabIndex = 6;
-            this.btnStcSendManual.Text = "SEND";
-            this.btnStcSendManual.UseVisualStyleBackColor = true;
-            this.btnStcSendManual.Click += new System.EventHandler(this.btnSendManual_Click);
-            // 
             // dbm2
             // 
             this.dbm2.AutoSize = true;
             this.dbm2.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dbm2.Location = new System.Drawing.Point(240, 462);
+            this.dbm2.Location = new System.Drawing.Point(344, 460);
             this.dbm2.Name = "dbm2";
             this.dbm2.Size = new System.Drawing.Size(86, 45);
             this.dbm2.TabIndex = 5;
@@ -266,23 +293,23 @@
             // btnStcSendSelected
             // 
             this.btnStcSendSelected.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStcSendSelected.Location = new System.Drawing.Point(345, 156);
+            this.btnStcSendSelected.Location = new System.Drawing.Point(345, 36);
             this.btnStcSendSelected.Name = "btnStcSendSelected";
-            this.btnStcSendSelected.Size = new System.Drawing.Size(109, 229);
+            this.btnStcSendSelected.Size = new System.Drawing.Size(109, 349);
             this.btnStcSendSelected.TabIndex = 4;
             this.btnStcSendSelected.Text = "SEND";
             this.btnStcSendSelected.UseVisualStyleBackColor = true;
             this.btnStcSendSelected.Click += new System.EventHandler(this.btnStcSendSelected_Click);
             // 
-            // tbStcManual
+            // tbStcResponse
             // 
-            this.tbStcManual.Font = new System.Drawing.Font("맑은 고딕", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbStcManual.Location = new System.Drawing.Point(9, 393);
-            this.tbStcManual.Name = "tbStcManual";
-            this.tbStcManual.Size = new System.Drawing.Size(225, 114);
-            this.tbStcManual.TabIndex = 3;
-            this.tbStcManual.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbStcManual.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbStcManual_KeyPress);
+            this.tbStcResponse.Font = new System.Drawing.Font("맑은 고딕", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbStcResponse.Location = new System.Drawing.Point(9, 393);
+            this.tbStcResponse.Name = "tbStcResponse";
+            this.tbStcResponse.ReadOnly = true;
+            this.tbStcResponse.Size = new System.Drawing.Size(329, 114);
+            this.tbStcResponse.TabIndex = 3;
+            this.tbStcResponse.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbStc
             // 
@@ -300,30 +327,29 @@
             // 
             this.dbm1.AutoSize = true;
             this.dbm1.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dbm1.Location = new System.Drawing.Point(344, 100);
+            this.dbm1.Location = new System.Drawing.Point(252, 100);
             this.dbm1.Name = "dbm1";
             this.dbm1.Size = new System.Drawing.Size(86, 45);
             this.dbm1.TabIndex = 1;
             this.dbm1.Text = "dBm";
             // 
-            // tbStcSelected
+            // tbStcRequest
             // 
-            this.tbStcSelected.Font = new System.Drawing.Font("맑은 고딕", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbStcSelected.Location = new System.Drawing.Point(9, 36);
-            this.tbStcSelected.Name = "tbStcSelected";
-            this.tbStcSelected.ReadOnly = true;
-            this.tbStcSelected.Size = new System.Drawing.Size(330, 114);
-            this.tbStcSelected.TabIndex = 0;
-            this.tbStcSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbStcRequest.Font = new System.Drawing.Font("맑은 고딕", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbStcRequest.Location = new System.Drawing.Point(9, 36);
+            this.tbStcRequest.Name = "tbStcRequest";
+            this.tbStcRequest.Size = new System.Drawing.Size(237, 114);
+            this.tbStcRequest.TabIndex = 0;
+            this.tbStcRequest.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbStcRequest.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbStcRequest_KeyPress);
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.btnAgcSendManual);
             this.groupBox5.Controls.Add(this.btnAgcSendSelected);
             this.groupBox5.Controls.Add(this.dbm4);
-            this.groupBox5.Controls.Add(this.tbAgcSelected);
+            this.groupBox5.Controls.Add(this.tbAgcRequest);
             this.groupBox5.Controls.Add(this.dbm3);
-            this.groupBox5.Controls.Add(this.tbAgcManual);
+            this.groupBox5.Controls.Add(this.tbAgcResponse);
             this.groupBox5.Controls.Add(this.lbAgc);
             this.groupBox5.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox5.Location = new System.Drawing.Point(500, 284);
@@ -333,23 +359,12 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "AGC 설정";
             // 
-            // btnAgcSendManual
-            // 
-            this.btnAgcSendManual.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgcSendManual.Location = new System.Drawing.Point(345, 393);
-            this.btnAgcSendManual.Name = "btnAgcSendManual";
-            this.btnAgcSendManual.Size = new System.Drawing.Size(109, 112);
-            this.btnAgcSendManual.TabIndex = 13;
-            this.btnAgcSendManual.Text = "SEND";
-            this.btnAgcSendManual.UseVisualStyleBackColor = true;
-            this.btnAgcSendManual.Click += new System.EventHandler(this.btnAgcSendManual_Click);
-            // 
             // btnAgcSendSelected
             // 
             this.btnAgcSendSelected.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgcSendSelected.Location = new System.Drawing.Point(344, 156);
+            this.btnAgcSendSelected.Location = new System.Drawing.Point(344, 36);
             this.btnAgcSendSelected.Name = "btnAgcSendSelected";
-            this.btnAgcSendSelected.Size = new System.Drawing.Size(109, 229);
+            this.btnAgcSendSelected.Size = new System.Drawing.Size(109, 349);
             this.btnAgcSendSelected.TabIndex = 11;
             this.btnAgcSendSelected.Text = "SEND";
             this.btnAgcSendSelected.UseVisualStyleBackColor = true;
@@ -359,41 +374,41 @@
             // 
             this.dbm4.AutoSize = true;
             this.dbm4.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dbm4.Location = new System.Drawing.Point(240, 462);
+            this.dbm4.Location = new System.Drawing.Point(344, 460);
             this.dbm4.Name = "dbm4";
             this.dbm4.Size = new System.Drawing.Size(86, 45);
             this.dbm4.TabIndex = 12;
             this.dbm4.Text = "dBm";
             // 
-            // tbAgcSelected
+            // tbAgcRequest
             // 
-            this.tbAgcSelected.Font = new System.Drawing.Font("맑은 고딕", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbAgcSelected.Location = new System.Drawing.Point(9, 36);
-            this.tbAgcSelected.Name = "tbAgcSelected";
-            this.tbAgcSelected.ReadOnly = true;
-            this.tbAgcSelected.Size = new System.Drawing.Size(330, 114);
-            this.tbAgcSelected.TabIndex = 7;
-            this.tbAgcSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbAgcRequest.Font = new System.Drawing.Font("맑은 고딕", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbAgcRequest.Location = new System.Drawing.Point(9, 36);
+            this.tbAgcRequest.Name = "tbAgcRequest";
+            this.tbAgcRequest.Size = new System.Drawing.Size(225, 114);
+            this.tbAgcRequest.TabIndex = 7;
+            this.tbAgcRequest.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbAgcRequest.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAgcRequest_KeyPress);
             // 
             // dbm3
             // 
             this.dbm3.AutoSize = true;
             this.dbm3.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dbm3.Location = new System.Drawing.Point(345, 100);
+            this.dbm3.Location = new System.Drawing.Point(244, 100);
             this.dbm3.Name = "dbm3";
             this.dbm3.Size = new System.Drawing.Size(86, 45);
             this.dbm3.TabIndex = 8;
             this.dbm3.Text = "dBm";
             // 
-            // tbAgcManual
+            // tbAgcResponse
             // 
-            this.tbAgcManual.Font = new System.Drawing.Font("맑은 고딕", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbAgcManual.Location = new System.Drawing.Point(9, 393);
-            this.tbAgcManual.Name = "tbAgcManual";
-            this.tbAgcManual.Size = new System.Drawing.Size(225, 114);
-            this.tbAgcManual.TabIndex = 10;
-            this.tbAgcManual.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbAgcManual.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAgcManual_KeyPress);
+            this.tbAgcResponse.Font = new System.Drawing.Font("맑은 고딕", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbAgcResponse.Location = new System.Drawing.Point(9, 393);
+            this.tbAgcResponse.Name = "tbAgcResponse";
+            this.tbAgcResponse.ReadOnly = true;
+            this.tbAgcResponse.Size = new System.Drawing.Size(329, 114);
+            this.tbAgcResponse.TabIndex = 10;
+            this.tbAgcResponse.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbAgc
             // 
@@ -406,47 +421,6 @@
             this.lbAgc.Size = new System.Drawing.Size(329, 229);
             this.lbAgc.TabIndex = 9;
             this.lbAgc.SelectedIndexChanged += new System.EventHandler(this.lbAgc_SelectedIndexChanged);
-            // 
-            // pbLo2
-            // 
-            this.pbLo2.Image = global::MultiChannelModuleController.Properties.Resources.black_small;
-            this.pbLo2.Location = new System.Drawing.Point(301, 73);
-            this.pbLo2.Name = "pbLo2";
-            this.pbLo2.Size = new System.Drawing.Size(16, 16);
-            this.pbLo2.TabIndex = 10;
-            this.pbLo2.TabStop = false;
-            this.pbLo2.Click += new System.EventHandler(this.pbLo2_Click);
-            // 
-            // pbLo1
-            // 
-            this.pbLo1.Image = global::MultiChannelModuleController.Properties.Resources.black_small;
-            this.pbLo1.Location = new System.Drawing.Point(153, 73);
-            this.pbLo1.Name = "pbLo1";
-            this.pbLo1.Size = new System.Drawing.Size(16, 16);
-            this.pbLo1.TabIndex = 9;
-            this.pbLo1.TabStop = false;
-            this.pbLo1.Click += new System.EventHandler(this.pbLo1_Click);
-            // 
-            // pbSerialPort
-            // 
-            this.pbSerialPort.Image = global::MultiChannelModuleController.Properties.Resources.black;
-            this.pbSerialPort.InitialImage = null;
-            this.pbSerialPort.Location = new System.Drawing.Point(745, 30);
-            this.pbSerialPort.Name = "pbSerialPort";
-            this.pbSerialPort.Size = new System.Drawing.Size(32, 32);
-            this.pbSerialPort.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbSerialPort.TabIndex = 4;
-            this.pbSerialPort.TabStop = false;
-            // 
-            // pbLogo
-            // 
-            this.pbLogo.Image = global::MultiChannelModuleController.Properties.Resources.sample_logo;
-            this.pbLogo.Location = new System.Drawing.Point(20, 32);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(253, 47);
-            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbLogo.TabIndex = 0;
-            this.pbLogo.TabStop = false;
             // 
             // MainForm
             // 
@@ -464,18 +438,18 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSerialPort)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLo2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLo1)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLo2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLo1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSerialPort)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -489,19 +463,17 @@
         private System.Windows.Forms.ComboBox cbSerialPort;
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button btnStcSendManual;
         private System.Windows.Forms.Label dbm2;
         private System.Windows.Forms.Button btnStcSendSelected;
-        private System.Windows.Forms.TextBox tbStcManual;
+        private System.Windows.Forms.TextBox tbStcResponse;
         private System.Windows.Forms.ListBox lbStc;
         private System.Windows.Forms.Label dbm1;
-        private System.Windows.Forms.TextBox tbStcSelected;
-        private System.Windows.Forms.Button btnAgcSendManual;
+        private System.Windows.Forms.TextBox tbStcRequest;
         private System.Windows.Forms.Button btnAgcSendSelected;
         private System.Windows.Forms.Label dbm4;
-        private System.Windows.Forms.TextBox tbAgcSelected;
+        private System.Windows.Forms.TextBox tbAgcRequest;
         private System.Windows.Forms.Label dbm3;
-        private System.Windows.Forms.TextBox tbAgcManual;
+        private System.Windows.Forms.TextBox tbAgcResponse;
         private System.Windows.Forms.ListBox lbAgc;
         private System.Windows.Forms.PictureBox pbSerialPort;
         private System.Windows.Forms.Button btnExit;
