@@ -4,7 +4,6 @@ using System.Drawing.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO.Ports;
-using System.Windows;
 
 namespace MultiChannelModuleController
 {
@@ -49,8 +48,8 @@ namespace MultiChannelModuleController
                     PauseStatusPolling();
 
                     pbSerialPort.Image = Properties.Resources.red;
-                    pbLo1.Image = Properties.Resources.black;
-                    pbLo2.Image = Properties.Resources.black;
+                    pbLo1.Image = Properties.Resources.black_small;
+                    pbLo2.Image = Properties.Resources.black_small;
                     cbSerialPort.Enabled = true;
                     btnConnect.Text = "OPEN";
                     btnModeSend.Enabled = false;
@@ -77,7 +76,7 @@ namespace MultiChannelModuleController
         private static object RequestLock = new object(); 
         private static Thread StatusPollingThread;
         private static ManualResetEvent ConnectedEvent = new ManualResetEvent(false);  
-        private static int StatusPollingDelay = 10000; // 10 seconds
+        private static int StatusPollingDelay = 1000; // 1 seconds
         private delegate void UpdateStatus(bool isActive);
 
 
@@ -129,18 +128,19 @@ namespace MultiChannelModuleController
             digitalFont.AddFontFile("digital_font.ttf");
             Font textFont;
 
-            textFont = new Font(digitalFont.Families[0], 28f);
+            textFont = new Font(digitalFont.Families[0], 60f);
             tbStcSelected.Font = textFont;
+            textFont = new Font(digitalFont.Families[0], 48f);
             tbStcManual.Font = textFont;
             tbStcManual.Text = "0.00";
 
-            textFont = new Font(digitalFont.Families[0], 14f);
+            textFont = new Font(digitalFont.Families[0], 28f);
             dbm1.Font = textFont;
-            textFont = new Font(digitalFont.Families[0], 12f);
+            textFont = new Font(digitalFont.Families[0], 28f);
             dbm2.Font = textFont;
 
             double value = 0.0;
-            for (int i = 0; i <= 128; i++)
+            for (int i = 1; i <= 128; i++)
             {
                 String item = String.Format("{0:D3} :   {1:F}   dBm", i, value);
                 lbStc.Items.Add(item);
@@ -155,20 +155,21 @@ namespace MultiChannelModuleController
             digitalFont.AddFontFile("digital_font.ttf");
             Font textFont;
 
-            textFont = new Font(digitalFont.Families[0], 28f);
+            textFont = new Font(digitalFont.Families[0], 60f);
             tbAgcSelected.Font = textFont;
+            textFont = new Font(digitalFont.Families[0], 48f);
             tbAgcManual.Font = textFont;
             tbAgcManual.Text = "0.00";
 
-            textFont = new Font(digitalFont.Families[0], 14f);
+            textFont = new Font(digitalFont.Families[0], 28f);
             dbm3.Font = textFont;
-            textFont = new Font(digitalFont.Families[0], 12f);
+            textFont = new Font(digitalFont.Families[0], 28f);
             dbm4.Font = textFont;
 
             double value = 0.0;
-            for (int i = 0; i <= 128; i++)
+            for (int i = 1; i <= 128; i++)
             {
-                String item = String.Format("{0:D3} :   {1:F}   dBm", i, value);
+                String item = String.Format("{0:D3}:   {1:F}   dBm", i, value);
                 lbAgc.Items.Add(item);
                 value += 0.5;
             }
@@ -353,7 +354,7 @@ namespace MultiChannelModuleController
 
         private void btnAgcSendManual_Click(object sender, EventArgs e)
         {
-            double doubleValue = Convert.ToDouble(tbStcManual.Text);
+            double doubleValue = Convert.ToDouble(tbAgcManual.Text);
             string valueError;
             if (!ValidateControlValue(doubleValue, out valueError))
             {
@@ -410,13 +411,13 @@ namespace MultiChannelModuleController
         private void UpdateLo1Status(bool isActive)
         {
             pbLo1.Image = isActive ?
-                Properties.Resources.green : Properties.Resources.red;
+                Properties.Resources.green_small : Properties.Resources.red_small;
         }
 
         private void UpdateLo2Status(bool isActive)
         {
             pbLo2.Image = isActive ?
-                Properties.Resources.green : Properties.Resources.red;
+                Properties.Resources.green_small : Properties.Resources.red_small;
         }
 
         private RequestResult GetCurrentStatus()
@@ -516,6 +517,26 @@ namespace MultiChannelModuleController
                     ResponseFrameBuffer[ResponseReceived++] = read;
                 }
             }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pbLo1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pbLo2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

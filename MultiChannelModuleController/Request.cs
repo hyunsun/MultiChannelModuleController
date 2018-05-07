@@ -164,13 +164,13 @@ namespace MultiChannelModuleController
             return true;
         }
 
-        private ushort ComputeChecksum(byte[] buffer)
+        public static ushort ComputeChecksum(byte[] buffer)
         {
             if (buffer == null) throw new ArgumentNullException();
             ushort crc = 0;
             for (int i = 0; i < buffer.Length; ++i)
             {
-                crc = (ushort)((crc >> 8) ^ CRCTable[(crc ^ buffer[i]) & 0xff]);
+                crc = (ushort)((crc << 8) ^ CRCTable[((crc >> 8) & 0xff) ^ buffer[i]]);
             }
             return crc;
         }
