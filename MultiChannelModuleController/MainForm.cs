@@ -145,7 +145,6 @@ namespace MultiChannelModuleController
 
             digitalFont = new Font(DigitalFont.Families[0], 60f);
             tbStcSelected.Font = digitalFont;
-            digitalFont = new Font(DigitalFont.Families[0], 48f);
             tbStcManual.Font = digitalFont;
             tbStcManual.Text = "0.00";
 
@@ -170,7 +169,6 @@ namespace MultiChannelModuleController
 
             digitalFont = new Font(DigitalFont.Families[0], 60f);
             tbAgcSelected.Font = digitalFont;
-            digitalFont = new Font(DigitalFont.Families[0], 48f);
             tbAgcManual.Font = digitalFont;
             tbAgcManual.Text = "0.00";
 
