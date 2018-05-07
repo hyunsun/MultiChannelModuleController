@@ -79,6 +79,10 @@ namespace MultiChannelModuleController
         private static int StatusPollingDelay = 1000; // 1 seconds
         private delegate void UpdateStatus(bool isActive);
 
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
+            IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
+        private static PrivateFontCollection DigitalFont = new PrivateFontCollection();
 
         public MainForm()
         {
@@ -91,6 +95,7 @@ namespace MultiChannelModuleController
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            InitDigitalFont();
             InitSerialPortGroup();
             InitAlarmModeGroup();
             InitStcGroup();
@@ -103,6 +108,18 @@ namespace MultiChannelModuleController
             {
                 SerialPort.Close();
             }
+        }
+
+        private void InitDigitalFont()
+        {
+            byte[] fontData = Properties.Resources.digital_font;
+            uint dummy = 0;
+
+            IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
+            System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
+            DigitalFont.AddMemoryFont(fontPtr, Properties.Resources.digital_font.Length);
+            AddFontMemResourceEx(fontPtr, (uint)Properties.Resources.digital_font.Length, IntPtr.Zero, ref dummy);
+            System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
         }
 
         private void InitSerialPortGroup()
@@ -124,20 +141,18 @@ namespace MultiChannelModuleController
 
         private void InitStcGroup()
         {
-            PrivateFontCollection digitalFont = new PrivateFontCollection();
-            digitalFont.AddFontFile("digital_font.ttf");
-            Font textFont;
+            Font digitalFont;
 
-            textFont = new Font(digitalFont.Families[0], 60f);
-            tbStcSelected.Font = textFont;
-            textFont = new Font(digitalFont.Families[0], 48f);
-            tbStcManual.Font = textFont;
+            digitalFont = new Font(DigitalFont.Families[0], 60f);
+            tbStcSelected.Font = digitalFont;
+            digitalFont = new Font(DigitalFont.Families[0], 48f);
+            tbStcManual.Font = digitalFont;
             tbStcManual.Text = "0.00";
 
-            textFont = new Font(digitalFont.Families[0], 28f);
-            dbm1.Font = textFont;
-            textFont = new Font(digitalFont.Families[0], 28f);
-            dbm2.Font = textFont;
+            digitalFont = new Font(DigitalFont.Families[0], 28f);
+            dbm1.Font = digitalFont;
+            digitalFont = new Font(DigitalFont.Families[0], 28f);
+            dbm2.Font = digitalFont;
 
             double value = 0.0;
             for (int i = 1; i <= 128; i++)
@@ -151,20 +166,18 @@ namespace MultiChannelModuleController
 
         private void InitAgcGroup()
         {
-            PrivateFontCollection digitalFont = new PrivateFontCollection();
-            digitalFont.AddFontFile("digital_font.ttf");
-            Font textFont;
+            Font digitalFont;
 
-            textFont = new Font(digitalFont.Families[0], 60f);
-            tbAgcSelected.Font = textFont;
-            textFont = new Font(digitalFont.Families[0], 48f);
-            tbAgcManual.Font = textFont;
+            digitalFont = new Font(DigitalFont.Families[0], 60f);
+            tbAgcSelected.Font = digitalFont;
+            digitalFont = new Font(DigitalFont.Families[0], 48f);
+            tbAgcManual.Font = digitalFont;
             tbAgcManual.Text = "0.00";
 
-            textFont = new Font(digitalFont.Families[0], 28f);
-            dbm3.Font = textFont;
-            textFont = new Font(digitalFont.Families[0], 28f);
-            dbm4.Font = textFont;
+            digitalFont = new Font(DigitalFont.Families[0], 28f);
+            dbm3.Font = digitalFont;
+            digitalFont = new Font(DigitalFont.Families[0], 28f);
+            dbm4.Font = digitalFont;
 
             double value = 0.0;
             for (int i = 1; i <= 128; i++)
