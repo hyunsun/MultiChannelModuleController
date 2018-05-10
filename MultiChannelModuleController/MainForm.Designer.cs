@@ -309,13 +309,13 @@
             // 
             // lbStc
             // 
-            this.lbStc.Font = new System.Drawing.Font("Calibri", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStc.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStc.FormattingEnabled = true;
-            this.lbStc.ItemHeight = 45;
+            this.lbStc.ItemHeight = 24;
             this.lbStc.Location = new System.Drawing.Point(9, 156);
             this.lbStc.Name = "lbStc";
             this.lbStc.ScrollAlwaysVisible = true;
-            this.lbStc.Size = new System.Drawing.Size(329, 229);
+            this.lbStc.Size = new System.Drawing.Size(329, 220);
             this.lbStc.TabIndex = 2;
             this.lbStc.SelectedIndexChanged += new System.EventHandler(this.lbStc_SelectedIndexChanged);
             // 
@@ -408,13 +408,13 @@
             // 
             // lbAgc
             // 
-            this.lbAgc.Font = new System.Drawing.Font("Calibri", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAgc.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbAgc.FormattingEnabled = true;
-            this.lbAgc.ItemHeight = 45;
+            this.lbAgc.ItemHeight = 24;
             this.lbAgc.Location = new System.Drawing.Point(9, 156);
             this.lbAgc.Name = "lbAgc";
             this.lbAgc.ScrollAlwaysVisible = true;
-            this.lbAgc.Size = new System.Drawing.Size(329, 229);
+            this.lbAgc.Size = new System.Drawing.Size(329, 220);
             this.lbAgc.TabIndex = 9;
             this.lbAgc.SelectedIndexChanged += new System.EventHandler(this.lbAgc_SelectedIndexChanged);
             // 
