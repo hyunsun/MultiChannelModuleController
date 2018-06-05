@@ -30,17 +30,11 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pbSerialPort = new System.Windows.Forms.PictureBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
             this.cbSerialPort = new System.Windows.Forms.ComboBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnModeSend = new System.Windows.Forms.Button();
-            this.rbHighResolution = new System.Windows.Forms.RadioButton();
-            this.rbNormal = new System.Windows.Forms.RadioButton();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnStcSendManual = new System.Windows.Forms.Button();
             this.dbm2 = new System.Windows.Forms.Label();
@@ -57,19 +51,23 @@
             this.dbm3 = new System.Windows.Forms.Label();
             this.tbAgcManual = new System.Windows.Forms.TextBox();
             this.lbAgc = new System.Windows.Forms.ListBox();
-            this.pbLo2 = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.pbLo1 = new System.Windows.Forms.PictureBox();
-            this.pbSerialPort = new System.Windows.Forms.PictureBox();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.pbLo2 = new System.Windows.Forms.PictureBox();
+            this.rbNormal = new System.Windows.Forms.RadioButton();
+            this.rbHighResolution = new System.Windows.Forms.RadioButton();
+            this.btnModeSend = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSerialPort)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLo2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLo1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSerialPort)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLo2)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -79,11 +77,10 @@
             this.groupBox1.Controls.Add(this.btnExit);
             this.groupBox1.Controls.Add(this.btnConnect);
             this.groupBox1.Controls.Add(this.cbSerialPort);
-            this.groupBox1.Controls.Add(this.pbLogo);
             this.groupBox1.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox1.Location = new System.Drawing.Point(20, 12);
+            this.groupBox1.Location = new System.Drawing.Point(346, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(940, 88);
+            this.groupBox1.Size = new System.Drawing.Size(613, 88);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "통신";
@@ -92,16 +89,27 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(728, 65);
+            this.label1.Location = new System.Drawing.Point(411, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 20);
             this.label1.TabIndex = 15;
             this.label1.Text = "통신상태";
             // 
+            // pbSerialPort
+            // 
+            this.pbSerialPort.Image = global::MultiChannelModuleController.Properties.Resources.black;
+            this.pbSerialPort.InitialImage = null;
+            this.pbSerialPort.Location = new System.Drawing.Point(428, 28);
+            this.pbSerialPort.Name = "pbSerialPort";
+            this.pbSerialPort.Size = new System.Drawing.Size(32, 32);
+            this.pbSerialPort.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSerialPort.TabIndex = 4;
+            this.pbSerialPort.TabStop = false;
+            // 
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(825, 30);
+            this.btnExit.Location = new System.Drawing.Point(498, 28);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(109, 48);
             this.btnExit.TabIndex = 3;
@@ -112,7 +120,7 @@
             // btnConnect
             // 
             this.btnConnect.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnect.Location = new System.Drawing.Point(586, 30);
+            this.btnConnect.Location = new System.Drawing.Point(282, 27);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(109, 49);
             this.btnConnect.TabIndex = 2;
@@ -124,104 +132,22 @@
             // 
             this.cbSerialPort.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbSerialPort.FormattingEnabled = true;
-            this.cbSerialPort.Location = new System.Drawing.Point(327, 32);
+            this.cbSerialPort.Location = new System.Drawing.Point(21, 30);
             this.cbSerialPort.Name = "cbSerialPort";
             this.cbSerialPort.Size = new System.Drawing.Size(242, 44);
             this.cbSerialPort.TabIndex = 1;
             this.cbSerialPort.SelectedIndexChanged += new System.EventHandler(this.cbSerialPort_SelectedIndexChanged);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Location = new System.Drawing.Point(20, 106);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(940, 67);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label7.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label7.Location = new System.Drawing.Point(338, 17);
+            this.label7.Location = new System.Drawing.Point(22, 41);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(293, 37);
             this.label7.TabIndex = 15;
             this.label7.Text = "다채널 수신 모듈 V1.0";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.btnModeSend);
-            this.groupBox3.Controls.Add(this.rbHighResolution);
-            this.groupBox3.Controls.Add(this.rbNormal);
-            this.groupBox3.Controls.Add(this.pbLo2);
-            this.groupBox3.Controls.Add(this.pbLo1);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox3.Location = new System.Drawing.Point(20, 179);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(940, 99);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "알람/모드 설정";
-            // 
-            // btnModeSend
-            // 
-            this.btnModeSend.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModeSend.Location = new System.Drawing.Point(825, 32);
-            this.btnModeSend.Name = "btnModeSend";
-            this.btnModeSend.Size = new System.Drawing.Size(109, 48);
-            this.btnModeSend.TabIndex = 14;
-            this.btnModeSend.Text = "SEND";
-            this.btnModeSend.UseVisualStyleBackColor = true;
-            this.btnModeSend.Click += new System.EventHandler(this.btnModeSend_Click);
-            // 
-            // rbHighResolution
-            // 
-            this.rbHighResolution.AutoSize = true;
-            this.rbHighResolution.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbHighResolution.Location = new System.Drawing.Point(489, 59);
-            this.rbHighResolution.Name = "rbHighResolution";
-            this.rbHighResolution.Size = new System.Drawing.Size(189, 30);
-            this.rbHighResolution.TabIndex = 12;
-            this.rbHighResolution.TabStop = true;
-            this.rbHighResolution.Text = "HIGH RESOLUTION";
-            this.rbHighResolution.UseVisualStyleBackColor = true;
-            // 
-            // rbNormal
-            // 
-            this.rbNormal.AutoSize = true;
-            this.rbNormal.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbNormal.Location = new System.Drawing.Point(489, 23);
-            this.rbNormal.Name = "rbNormal";
-            this.rbNormal.Size = new System.Drawing.Size(108, 30);
-            this.rbNormal.TabIndex = 11;
-            this.rbNormal.TabStop = true;
-            this.rbNormal.Text = "NORMAL";
-            this.rbNormal.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(269, 36);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 26);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "LO2_BIT";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(123, 36);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 26);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "LO1_BIT";
             // 
             // groupBox4
             // 
@@ -233,7 +159,7 @@
             this.groupBox4.Controls.Add(this.dbm1);
             this.groupBox4.Controls.Add(this.tbStcSelected);
             this.groupBox4.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox4.Location = new System.Drawing.Point(20, 284);
+            this.groupBox4.Location = new System.Drawing.Point(19, 211);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(460, 515);
             this.groupBox4.TabIndex = 2;
@@ -324,7 +250,7 @@
             this.groupBox5.Controls.Add(this.tbAgcManual);
             this.groupBox5.Controls.Add(this.lbAgc);
             this.groupBox5.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox5.Location = new System.Drawing.Point(500, 284);
+            this.groupBox5.Location = new System.Drawing.Point(499, 211);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(460, 515);
             this.groupBox5.TabIndex = 3;
@@ -405,54 +331,116 @@
             this.lbAgc.TabIndex = 9;
             this.lbAgc.SelectedIndexChanged += new System.EventHandler(this.lbAgc_SelectedIndexChanged);
             // 
-            // pbLo2
+            // label5
             // 
-            this.pbLo2.Image = global::MultiChannelModuleController.Properties.Resources.black_small;
-            this.pbLo2.Location = new System.Drawing.Point(301, 73);
-            this.pbLo2.Name = "pbLo2";
-            this.pbLo2.Size = new System.Drawing.Size(16, 16);
-            this.pbLo2.TabIndex = 10;
-            this.pbLo2.TabStop = false;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(123, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(82, 26);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "LO1_BIT";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(266, 33);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(82, 26);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "LO2_BIT";
             // 
             // pbLo1
             // 
             this.pbLo1.Image = global::MultiChannelModuleController.Properties.Resources.black_small;
-            this.pbLo1.Location = new System.Drawing.Point(153, 73);
+            this.pbLo1.Location = new System.Drawing.Point(153, 70);
             this.pbLo1.Name = "pbLo1";
             this.pbLo1.Size = new System.Drawing.Size(16, 16);
             this.pbLo1.TabIndex = 9;
             this.pbLo1.TabStop = false;
             // 
-            // pbSerialPort
+            // pbLo2
             // 
-            this.pbSerialPort.Image = global::MultiChannelModuleController.Properties.Resources.black;
-            this.pbSerialPort.InitialImage = null;
-            this.pbSerialPort.Location = new System.Drawing.Point(745, 30);
-            this.pbSerialPort.Name = "pbSerialPort";
-            this.pbSerialPort.Size = new System.Drawing.Size(32, 32);
-            this.pbSerialPort.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbSerialPort.TabIndex = 4;
-            this.pbSerialPort.TabStop = false;
+            this.pbLo2.Image = global::MultiChannelModuleController.Properties.Resources.black_small;
+            this.pbLo2.Location = new System.Drawing.Point(298, 70);
+            this.pbLo2.Name = "pbLo2";
+            this.pbLo2.Size = new System.Drawing.Size(16, 16);
+            this.pbLo2.TabIndex = 10;
+            this.pbLo2.TabStop = false;
             // 
-            // pbLogo
+            // rbNormal
             // 
-            this.pbLogo.Image = global::MultiChannelModuleController.Properties.Resources.sample_logo;
-            this.pbLogo.Location = new System.Drawing.Point(20, 32);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(253, 47);
-            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbLogo.TabIndex = 0;
-            this.pbLogo.TabStop = false;
+            this.rbNormal.AutoSize = true;
+            this.rbNormal.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbNormal.Location = new System.Drawing.Point(26, 29);
+            this.rbNormal.Name = "rbNormal";
+            this.rbNormal.Size = new System.Drawing.Size(108, 30);
+            this.rbNormal.TabIndex = 11;
+            this.rbNormal.TabStop = true;
+            this.rbNormal.Text = "NORMAL";
+            this.rbNormal.UseVisualStyleBackColor = true;
+            // 
+            // rbHighResolution
+            // 
+            this.rbHighResolution.AutoSize = true;
+            this.rbHighResolution.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbHighResolution.Location = new System.Drawing.Point(26, 60);
+            this.rbHighResolution.Name = "rbHighResolution";
+            this.rbHighResolution.Size = new System.Drawing.Size(189, 30);
+            this.rbHighResolution.TabIndex = 12;
+            this.rbHighResolution.TabStop = true;
+            this.rbHighResolution.Text = "HIGH RESOLUTION";
+            this.rbHighResolution.UseVisualStyleBackColor = true;
+            // 
+            // btnModeSend
+            // 
+            this.btnModeSend.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModeSend.Location = new System.Drawing.Point(344, 32);
+            this.btnModeSend.Name = "btnModeSend";
+            this.btnModeSend.Size = new System.Drawing.Size(109, 48);
+            this.btnModeSend.TabIndex = 14;
+            this.btnModeSend.Text = "SEND";
+            this.btnModeSend.UseVisualStyleBackColor = true;
+            this.btnModeSend.Click += new System.EventHandler(this.btnModeSend_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.pbLo2);
+            this.groupBox3.Controls.Add(this.pbLo1);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox3.Location = new System.Drawing.Point(19, 106);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(460, 99);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "알람";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.rbHighResolution);
+            this.groupBox2.Controls.Add(this.btnModeSend);
+            this.groupBox2.Controls.Add(this.rbNormal);
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox2.Location = new System.Drawing.Point(499, 106);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(459, 98);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "모드 설정";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 816);
+            this.ClientSize = new System.Drawing.Size(984, 745);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "MainForm";
             this.Text = "다채널 수신 모듈";
@@ -460,30 +448,27 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSerialPort)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLo2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLo1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSerialPort)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLo2)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ComboBox cbSerialPort;
-        private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btnStcSendManual;
         private System.Windows.Forms.Label dbm2;
@@ -502,15 +487,17 @@
         private System.Windows.Forms.PictureBox pbSerialPort;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnConnect;
-        private System.Windows.Forms.Button btnModeSend;
-        private System.Windows.Forms.RadioButton rbHighResolution;
-        private System.Windows.Forms.RadioButton rbNormal;
-        private System.Windows.Forms.PictureBox pbLo2;
-        private System.Windows.Forms.PictureBox pbLo1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.PictureBox pbLo1;
+        private System.Windows.Forms.PictureBox pbLo2;
+        private System.Windows.Forms.RadioButton rbNormal;
+        private System.Windows.Forms.RadioButton rbHighResolution;
+        private System.Windows.Forms.Button btnModeSend;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 
