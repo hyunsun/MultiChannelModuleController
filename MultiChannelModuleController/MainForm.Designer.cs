@@ -36,21 +36,21 @@
             this.cbSerialPort = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnStcSendManual = new System.Windows.Forms.Button();
-            this.dbm2 = new System.Windows.Forms.Label();
             this.btnStcSendSelected = new System.Windows.Forms.Button();
-            this.tbStcManual = new System.Windows.Forms.TextBox();
             this.lbStc = new System.Windows.Forms.ListBox();
             this.dbm1 = new System.Windows.Forms.Label();
             this.tbStcSelected = new System.Windows.Forms.TextBox();
+            this.btnStcSendManual = new System.Windows.Forms.Button();
+            this.dbm2 = new System.Windows.Forms.Label();
+            this.tbStcManual = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnAgcSendManual = new System.Windows.Forms.Button();
             this.btnAgcSendSelected = new System.Windows.Forms.Button();
-            this.dbm4 = new System.Windows.Forms.Label();
             this.tbAgcSelected = new System.Windows.Forms.TextBox();
             this.dbm3 = new System.Windows.Forms.Label();
-            this.tbAgcManual = new System.Windows.Forms.TextBox();
             this.lbAgc = new System.Windows.Forms.ListBox();
+            this.btnAgcSendManual = new System.Windows.Forms.Button();
+            this.dbm4 = new System.Windows.Forms.Label();
+            this.tbAgcManual = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pbLo1 = new System.Windows.Forms.PictureBox();
@@ -60,6 +60,8 @@
             this.btnModeSend = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSerialPort)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -68,6 +70,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbLo2)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -109,9 +113,9 @@
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(498, 28);
+            this.btnExit.Location = new System.Drawing.Point(486, 28);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(109, 48);
+            this.btnExit.Size = new System.Drawing.Size(121, 48);
             this.btnExit.TabIndex = 3;
             this.btnExit.Text = "EXIT";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -122,7 +126,7 @@
             this.btnConnect.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConnect.Location = new System.Drawing.Point(282, 27);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(109, 49);
+            this.btnConnect.Size = new System.Drawing.Size(123, 49);
             this.btnConnect.TabIndex = 2;
             this.btnConnect.Text = "OPEN";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -151,27 +155,68 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.btnStcSendManual);
-            this.groupBox4.Controls.Add(this.dbm2);
             this.groupBox4.Controls.Add(this.btnStcSendSelected);
-            this.groupBox4.Controls.Add(this.tbStcManual);
             this.groupBox4.Controls.Add(this.lbStc);
             this.groupBox4.Controls.Add(this.dbm1);
             this.groupBox4.Controls.Add(this.tbStcSelected);
             this.groupBox4.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox4.Location = new System.Drawing.Point(19, 211);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(460, 515);
+            this.groupBox4.Size = new System.Drawing.Size(460, 473);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "STC 설정";
             // 
+            // btnStcSendSelected
+            // 
+            this.btnStcSendSelected.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStcSendSelected.Location = new System.Drawing.Point(332, 40);
+            this.btnStcSendSelected.Name = "btnStcSendSelected";
+            this.btnStcSendSelected.Size = new System.Drawing.Size(121, 90);
+            this.btnStcSendSelected.TabIndex = 4;
+            this.btnStcSendSelected.Text = "SEND";
+            this.btnStcSendSelected.UseVisualStyleBackColor = true;
+            this.btnStcSendSelected.Click += new System.EventHandler(this.btnStcSendSelected_Click);
+            // 
+            // lbStc
+            // 
+            this.lbStc.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStc.FormattingEnabled = true;
+            this.lbStc.ItemHeight = 24;
+            this.lbStc.Location = new System.Drawing.Point(10, 142);
+            this.lbStc.Name = "lbStc";
+            this.lbStc.ScrollAlwaysVisible = true;
+            this.lbStc.Size = new System.Drawing.Size(305, 316);
+            this.lbStc.TabIndex = 2;
+            this.lbStc.SelectedIndexChanged += new System.EventHandler(this.lbStc_SelectedIndexChanged);
+            // 
+            // dbm1
+            // 
+            this.dbm1.AutoSize = true;
+            this.dbm1.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dbm1.Location = new System.Drawing.Point(240, 85);
+            this.dbm1.Name = "dbm1";
+            this.dbm1.Size = new System.Drawing.Size(86, 45);
+            this.dbm1.TabIndex = 1;
+            this.dbm1.Text = "dBm";
+            // 
+            // tbStcSelected
+            // 
+            this.tbStcSelected.Font = new System.Drawing.Font("맑은 고딕", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbStcSelected.Location = new System.Drawing.Point(10, 40);
+            this.tbStcSelected.Multiline = true;
+            this.tbStcSelected.Name = "tbStcSelected";
+            this.tbStcSelected.ReadOnly = true;
+            this.tbStcSelected.Size = new System.Drawing.Size(225, 90);
+            this.tbStcSelected.TabIndex = 0;
+            this.tbStcSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // btnStcSendManual
             // 
             this.btnStcSendManual.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStcSendManual.Location = new System.Drawing.Point(345, 393);
+            this.btnStcSendManual.Location = new System.Drawing.Point(332, 40);
             this.btnStcSendManual.Name = "btnStcSendManual";
-            this.btnStcSendManual.Size = new System.Drawing.Size(109, 112);
+            this.btnStcSendManual.Size = new System.Drawing.Size(121, 90);
             this.btnStcSendManual.TabIndex = 6;
             this.btnStcSendManual.Text = "SEND";
             this.btnStcSendManual.UseVisualStyleBackColor = true;
@@ -181,121 +226,56 @@
             // 
             this.dbm2.AutoSize = true;
             this.dbm2.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dbm2.Location = new System.Drawing.Point(240, 462);
+            this.dbm2.Location = new System.Drawing.Point(240, 85);
             this.dbm2.Name = "dbm2";
             this.dbm2.Size = new System.Drawing.Size(86, 45);
             this.dbm2.TabIndex = 5;
             this.dbm2.Text = "dBm";
             // 
-            // btnStcSendSelected
-            // 
-            this.btnStcSendSelected.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStcSendSelected.Location = new System.Drawing.Point(345, 156);
-            this.btnStcSendSelected.Name = "btnStcSendSelected";
-            this.btnStcSendSelected.Size = new System.Drawing.Size(109, 229);
-            this.btnStcSendSelected.TabIndex = 4;
-            this.btnStcSendSelected.Text = "SEND";
-            this.btnStcSendSelected.UseVisualStyleBackColor = true;
-            this.btnStcSendSelected.Click += new System.EventHandler(this.btnStcSendSelected_Click);
-            // 
             // tbStcManual
             // 
             this.tbStcManual.Font = new System.Drawing.Font("맑은 고딕", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbStcManual.Location = new System.Drawing.Point(9, 393);
+            this.tbStcManual.Location = new System.Drawing.Point(10, 40);
+            this.tbStcManual.Multiline = true;
             this.tbStcManual.Name = "tbStcManual";
-            this.tbStcManual.Size = new System.Drawing.Size(225, 114);
+            this.tbStcManual.Size = new System.Drawing.Size(225, 90);
             this.tbStcManual.TabIndex = 3;
             this.tbStcManual.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbStcManual.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbStcManual_KeyPress);
             // 
-            // lbStc
-            // 
-            this.lbStc.Font = new System.Drawing.Font("Calibri", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStc.FormattingEnabled = true;
-            this.lbStc.ItemHeight = 45;
-            this.lbStc.Location = new System.Drawing.Point(9, 156);
-            this.lbStc.Name = "lbStc";
-            this.lbStc.ScrollAlwaysVisible = true;
-            this.lbStc.Size = new System.Drawing.Size(329, 229);
-            this.lbStc.TabIndex = 2;
-            this.lbStc.SelectedIndexChanged += new System.EventHandler(this.lbStc_SelectedIndexChanged);
-            // 
-            // dbm1
-            // 
-            this.dbm1.AutoSize = true;
-            this.dbm1.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dbm1.Location = new System.Drawing.Point(344, 100);
-            this.dbm1.Name = "dbm1";
-            this.dbm1.Size = new System.Drawing.Size(86, 45);
-            this.dbm1.TabIndex = 1;
-            this.dbm1.Text = "dBm";
-            // 
-            // tbStcSelected
-            // 
-            this.tbStcSelected.Font = new System.Drawing.Font("맑은 고딕", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbStcSelected.Location = new System.Drawing.Point(9, 36);
-            this.tbStcSelected.Name = "tbStcSelected";
-            this.tbStcSelected.ReadOnly = true;
-            this.tbStcSelected.Size = new System.Drawing.Size(330, 114);
-            this.tbStcSelected.TabIndex = 0;
-            this.tbStcSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.btnAgcSendManual);
             this.groupBox5.Controls.Add(this.btnAgcSendSelected);
-            this.groupBox5.Controls.Add(this.dbm4);
             this.groupBox5.Controls.Add(this.tbAgcSelected);
             this.groupBox5.Controls.Add(this.dbm3);
-            this.groupBox5.Controls.Add(this.tbAgcManual);
             this.groupBox5.Controls.Add(this.lbAgc);
             this.groupBox5.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox5.Location = new System.Drawing.Point(499, 211);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(460, 515);
+            this.groupBox5.Size = new System.Drawing.Size(460, 473);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "AGC 설정";
             // 
-            // btnAgcSendManual
-            // 
-            this.btnAgcSendManual.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgcSendManual.Location = new System.Drawing.Point(345, 393);
-            this.btnAgcSendManual.Name = "btnAgcSendManual";
-            this.btnAgcSendManual.Size = new System.Drawing.Size(109, 112);
-            this.btnAgcSendManual.TabIndex = 13;
-            this.btnAgcSendManual.Text = "SEND";
-            this.btnAgcSendManual.UseVisualStyleBackColor = true;
-            this.btnAgcSendManual.Click += new System.EventHandler(this.btnAgcSendManual_Click);
-            // 
             // btnAgcSendSelected
             // 
             this.btnAgcSendSelected.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgcSendSelected.Location = new System.Drawing.Point(344, 156);
+            this.btnAgcSendSelected.Location = new System.Drawing.Point(332, 40);
             this.btnAgcSendSelected.Name = "btnAgcSendSelected";
-            this.btnAgcSendSelected.Size = new System.Drawing.Size(109, 229);
+            this.btnAgcSendSelected.Size = new System.Drawing.Size(122, 90);
             this.btnAgcSendSelected.TabIndex = 11;
             this.btnAgcSendSelected.Text = "SEND";
             this.btnAgcSendSelected.UseVisualStyleBackColor = true;
             this.btnAgcSendSelected.Click += new System.EventHandler(this.btnAgcSendSelected_Click);
             // 
-            // dbm4
-            // 
-            this.dbm4.AutoSize = true;
-            this.dbm4.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dbm4.Location = new System.Drawing.Point(240, 462);
-            this.dbm4.Name = "dbm4";
-            this.dbm4.Size = new System.Drawing.Size(86, 45);
-            this.dbm4.TabIndex = 12;
-            this.dbm4.Text = "dBm";
-            // 
             // tbAgcSelected
             // 
             this.tbAgcSelected.Font = new System.Drawing.Font("맑은 고딕", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbAgcSelected.Location = new System.Drawing.Point(9, 36);
+            this.tbAgcSelected.Location = new System.Drawing.Point(10, 40);
+            this.tbAgcSelected.Multiline = true;
             this.tbAgcSelected.Name = "tbAgcSelected";
             this.tbAgcSelected.ReadOnly = true;
-            this.tbAgcSelected.Size = new System.Drawing.Size(330, 114);
+            this.tbAgcSelected.Size = new System.Drawing.Size(225, 90);
             this.tbAgcSelected.TabIndex = 7;
             this.tbAgcSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -303,33 +283,55 @@
             // 
             this.dbm3.AutoSize = true;
             this.dbm3.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dbm3.Location = new System.Drawing.Point(345, 100);
+            this.dbm3.Location = new System.Drawing.Point(240, 85);
             this.dbm3.Name = "dbm3";
             this.dbm3.Size = new System.Drawing.Size(86, 45);
             this.dbm3.TabIndex = 8;
             this.dbm3.Text = "dBm";
             // 
+            // lbAgc
+            // 
+            this.lbAgc.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAgc.FormattingEnabled = true;
+            this.lbAgc.ItemHeight = 24;
+            this.lbAgc.Location = new System.Drawing.Point(10, 142);
+            this.lbAgc.Name = "lbAgc";
+            this.lbAgc.ScrollAlwaysVisible = true;
+            this.lbAgc.Size = new System.Drawing.Size(305, 316);
+            this.lbAgc.TabIndex = 9;
+            this.lbAgc.SelectedIndexChanged += new System.EventHandler(this.lbAgc_SelectedIndexChanged);
+            // 
+            // btnAgcSendManual
+            // 
+            this.btnAgcSendManual.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgcSendManual.Location = new System.Drawing.Point(332, 40);
+            this.btnAgcSendManual.Name = "btnAgcSendManual";
+            this.btnAgcSendManual.Size = new System.Drawing.Size(121, 90);
+            this.btnAgcSendManual.TabIndex = 13;
+            this.btnAgcSendManual.Text = "SEND";
+            this.btnAgcSendManual.UseVisualStyleBackColor = true;
+            this.btnAgcSendManual.Click += new System.EventHandler(this.btnAgcSendManual_Click);
+            // 
+            // dbm4
+            // 
+            this.dbm4.AutoSize = true;
+            this.dbm4.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dbm4.Location = new System.Drawing.Point(240, 85);
+            this.dbm4.Name = "dbm4";
+            this.dbm4.Size = new System.Drawing.Size(86, 45);
+            this.dbm4.TabIndex = 12;
+            this.dbm4.Text = "dBm";
+            // 
             // tbAgcManual
             // 
             this.tbAgcManual.Font = new System.Drawing.Font("맑은 고딕", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbAgcManual.Location = new System.Drawing.Point(9, 393);
+            this.tbAgcManual.Location = new System.Drawing.Point(10, 40);
+            this.tbAgcManual.Multiline = true;
             this.tbAgcManual.Name = "tbAgcManual";
-            this.tbAgcManual.Size = new System.Drawing.Size(225, 114);
+            this.tbAgcManual.Size = new System.Drawing.Size(225, 90);
             this.tbAgcManual.TabIndex = 10;
             this.tbAgcManual.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbAgcManual.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAgcManual_KeyPress);
-            // 
-            // lbAgc
-            // 
-            this.lbAgc.Font = new System.Drawing.Font("Calibri", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAgc.FormattingEnabled = true;
-            this.lbAgc.ItemHeight = 45;
-            this.lbAgc.Location = new System.Drawing.Point(9, 156);
-            this.lbAgc.Name = "lbAgc";
-            this.lbAgc.ScrollAlwaysVisible = true;
-            this.lbAgc.Size = new System.Drawing.Size(329, 229);
-            this.lbAgc.TabIndex = 9;
-            this.lbAgc.SelectedIndexChanged += new System.EventHandler(this.lbAgc_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -396,9 +398,9 @@
             // btnModeSend
             // 
             this.btnModeSend.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModeSend.Location = new System.Drawing.Point(344, 32);
+            this.btnModeSend.Location = new System.Drawing.Point(332, 32);
             this.btnModeSend.Name = "btnModeSend";
-            this.btnModeSend.Size = new System.Drawing.Size(109, 48);
+            this.btnModeSend.Size = new System.Drawing.Size(121, 48);
             this.btnModeSend.TabIndex = 14;
             this.btnModeSend.Text = "SEND";
             this.btnModeSend.UseVisualStyleBackColor = true;
@@ -431,11 +433,39 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "모드 설정";
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.btnStcSendManual);
+            this.groupBox6.Controls.Add(this.tbStcManual);
+            this.groupBox6.Controls.Add(this.dbm2);
+            this.groupBox6.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox6.Location = new System.Drawing.Point(19, 692);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(460, 143);
+            this.groupBox6.TabIndex = 17;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "STC 설정값 수동 입력";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.btnAgcSendManual);
+            this.groupBox7.Controls.Add(this.tbAgcManual);
+            this.groupBox7.Controls.Add(this.dbm4);
+            this.groupBox7.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox7.Location = new System.Drawing.Point(499, 692);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(460, 143);
+            this.groupBox7.TabIndex = 18;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "AGC 설정값 수동 입력";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 745);
+            this.ClientSize = new System.Drawing.Size(984, 859);
+            this.Controls.Add(this.groupBox7);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox5);
@@ -459,6 +489,10 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -498,6 +532,8 @@
         private System.Windows.Forms.Button btnModeSend;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupBox7;
     }
 }
 

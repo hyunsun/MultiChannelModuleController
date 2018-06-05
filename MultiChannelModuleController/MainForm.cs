@@ -274,6 +274,7 @@ namespace MultiChannelModuleController
 
         private void btnStcSendSelected_Click(object sender, EventArgs e)
         {
+            tbStcManual.Text = tbStcSelected.Text;
             byte data = Convert.ToByte(lbStc.SelectedIndex + 1);
 
             Request request = new Request(CommandType.StcRequest, data);
@@ -292,6 +293,7 @@ namespace MultiChannelModuleController
 
         private void btnSendManual_Click(object sender, EventArgs e)
         {
+            tbStcSelected.Text = tbStcManual.Text;
             double doubleValue = Convert.ToDouble(tbStcManual.Text);
             string valueError;
             if (!ValidateControlValue(doubleValue, out valueError))
@@ -347,6 +349,7 @@ namespace MultiChannelModuleController
 
         private void btnAgcSendSelected_Click(object sender, EventArgs e)
         {
+            tbAgcManual.Text = tbAgcSelected.Text;
             byte data = Convert.ToByte(lbAgc.SelectedIndex + 1);
 
             Request request = new Request(CommandType.AgcRequest, data);
@@ -365,6 +368,7 @@ namespace MultiChannelModuleController
 
         private void btnAgcSendManual_Click(object sender, EventArgs e)
         {
+            tbAgcSelected.Text = tbAgcManual.Text;
             double doubleValue = Convert.ToDouble(tbAgcManual.Text);
             string valueError;
             if (!ValidateControlValue(doubleValue, out valueError))
