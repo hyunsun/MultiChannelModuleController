@@ -62,6 +62,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.pbPower = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSerialPort)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -72,6 +74,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPower)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -337,7 +340,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(123, 33);
+            this.label5.Location = new System.Drawing.Point(64, 33);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(82, 26);
             this.label5.TabIndex = 7;
@@ -347,7 +350,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(266, 33);
+            this.label6.Location = new System.Drawing.Point(184, 33);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 26);
             this.label6.TabIndex = 8;
@@ -356,7 +359,7 @@
             // pbLo1
             // 
             this.pbLo1.Image = global::MultiChannelModuleController.Properties.Resources.black_small;
-            this.pbLo1.Location = new System.Drawing.Point(153, 70);
+            this.pbLo1.Location = new System.Drawing.Point(94, 70);
             this.pbLo1.Name = "pbLo1";
             this.pbLo1.Size = new System.Drawing.Size(16, 16);
             this.pbLo1.TabIndex = 9;
@@ -365,7 +368,7 @@
             // pbLo2
             // 
             this.pbLo2.Image = global::MultiChannelModuleController.Properties.Resources.black_small;
-            this.pbLo2.Location = new System.Drawing.Point(298, 70);
+            this.pbLo2.Location = new System.Drawing.Point(214, 70);
             this.pbLo2.Name = "pbLo2";
             this.pbLo2.Size = new System.Drawing.Size(16, 16);
             this.pbLo2.TabIndex = 10;
@@ -408,6 +411,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.pbPower);
+            this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.pbLo2);
             this.groupBox3.Controls.Add(this.pbLo1);
             this.groupBox3.Controls.Add(this.label6);
@@ -459,6 +464,25 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "AGC 설정값 수동 입력";
             // 
+            // pbPower
+            // 
+            this.pbPower.Image = global::MultiChannelModuleController.Properties.Resources.black_small;
+            this.pbPower.Location = new System.Drawing.Point(334, 70);
+            this.pbPower.Name = "pbPower";
+            this.pbPower.Size = new System.Drawing.Size(16, 16);
+            this.pbPower.TabIndex = 12;
+            this.pbPower.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(304, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 26);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "POWER";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -493,6 +517,7 @@
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPower)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -534,6 +559,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.PictureBox pbPower;
+        private System.Windows.Forms.Label label2;
     }
 }
 

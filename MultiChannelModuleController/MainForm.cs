@@ -50,6 +50,7 @@ namespace MultiChannelModuleController
                     pbSerialPort.Image = Properties.Resources.red;
                     pbLo1.Image = Properties.Resources.black_small;
                     pbLo2.Image = Properties.Resources.black_small;
+                    pbPower.Image = Properties.Resources.black_small;
                     cbSerialPort.Enabled = true;
                     btnConnect.Text = "OPEN";
                     btnModeSend.Enabled = false;
@@ -435,6 +436,12 @@ namespace MultiChannelModuleController
                 Properties.Resources.green_small : Properties.Resources.red_small;
         }
 
+        private void UpdatePowerStatus(bool isActive)
+        {
+            pbPower.Image = isActive ?
+                Properties.Resources.green_small : Properties.Resources.red_small;
+        }
+
         private RequestResult GetCurrentStatus()
         {
             Request request = new Request(CommandType.StatusRequest);
@@ -455,6 +462,8 @@ namespace MultiChannelModuleController
                         new object[] { result.Lo1Status });
                     pbLo2.Invoke(new UpdateStatus(UpdateLo2Status),
                         new object[] { result.Lo2Status });
+                    pbPower.Invoke(new UpdateStatus(UpdatePowerStatus),
+                        new object[] { result.PowerStatus });
                 }
                 Thread.Sleep(StatusPollingDelay);
             }

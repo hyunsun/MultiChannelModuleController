@@ -27,6 +27,7 @@ namespace MultiChannelModuleController
         public string ErrorMessage;
         public bool Lo1Status;
         public bool Lo2Status;
+        public bool PowerStatus;
     }
 
     class FrameConstants
@@ -160,6 +161,7 @@ namespace MultiChannelModuleController
             {
                 result.Lo1Status = (data & 1) != 0;
                 result.Lo2Status = (data & (1 << 1)) != 0;
+                result.PowerStatus = (data & (1 << 2)) != 0;
             }
             return true;
         }
